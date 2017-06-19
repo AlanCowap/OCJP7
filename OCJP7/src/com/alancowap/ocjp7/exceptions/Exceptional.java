@@ -38,8 +38,9 @@ public class Exceptional {
 		//Note if tryWithRes() doesn't handle the exceptions (which it doesn't) then it must declare them (which it does). #CatchOrDeclare
 		try(Reader r = new FileReader("somefile.txt")){
 			//read a file
-		}//no need to close the FileReader - it's done automagically 
-		
+		}//no need to close the FileReader - it's done automagically		
 	}
+	
+	//Check the link at the top of this file for the Java Language Specification of the 'try' statement
 
 }
