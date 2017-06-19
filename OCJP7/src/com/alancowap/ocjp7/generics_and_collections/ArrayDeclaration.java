@@ -1,7 +1,8 @@
 
 /**
  * 
- * Demo declaration of arrays
+ * Demo code for declaration of multidimensional arrays and initialization
+ * 
  * @author Alan Cowap
  *
  */
