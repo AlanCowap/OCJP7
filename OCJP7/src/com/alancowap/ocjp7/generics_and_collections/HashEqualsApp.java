@@ -103,7 +103,7 @@ class IPAddress{
 	@Override
 	public boolean equals(Object obj) {
 		return (obj instanceof IPAddress &&
-				(((IPAddress) obj).ipAddress == this.ipAddress ) && 
+				(((IPAddress) obj).ipAddress.equals(this.ipAddress)) && 
 				(((IPAddress) obj).portNumber == this.portNumber )
 				);
 	}
