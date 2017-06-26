@@ -47,10 +47,18 @@ public class HashEqualsApp {
 		IPAddress ip3 = new IPAddress("10.0.0.2");
 		System.out.println(hashSet.add(ip3));	//true
 		
-		//HashCode contract		
-		for(int i = 0; i <10; ++i)	System.out.println(ip3.hashCode()); //consistent 381...
+		//HashCode Contract: 3 Rules
+		//1. Consistent hashCode. 381...
+		for(int i = 0; i <10; ++i)
+			System.out.print(ip3.hashCode() + " ");
 		
+		//2. if equals returns true, hashCode must be equal
+		for(IPAddress ipAddy : hashSet)  
+			System.out.print("\n"+ ipAddy.equals(ip) +" "+ (ipAddy.hashCode() == ip.hashCode()));
 		
+		//3. if hashCodes are equal, equals does not have to return true (same bucket, different objects) 
+		//TODO Exercise: Modify the equals method to check the portNumber for equality
+		//TODO - see how this changes the results.
 	}
 	
 }
