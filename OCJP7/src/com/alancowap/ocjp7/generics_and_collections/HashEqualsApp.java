@@ -1,10 +1,14 @@
 /**
- * Demo overriding of toString, equals, hashCode/
+ * Demo overriding of toString, equals, hashCode.
+ * Use ArrayList, HashSet
+ * 
+ * @author Alan Cowap
  * 
  */
 package com.alancowap.ocjp7.generics_and_collections;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class HashEqualsApp {
 
@@ -26,16 +30,25 @@ public class HashEqualsApp {
 		//Let's look at an example of the Collection classes using equals
 		ArrayList<IPAddress> al = new ArrayList<IPAddress>(2);
 		System.out.println(!al.contains(ip));	//true
-		if(!al.contains(ip)) al.add(ip);	
-		
+		if(!al.contains(ip)) al.add(ip);		
 		System.out.println(!al.contains(ip));	//false
-		if(!al.contains(ip)) al.add(ip);
-		
+		if(!al.contains(ip)) al.add(ip);		
 		System.out.println(!al.contains(ip2));	//false
-		if(!al.contains(ip2)) al.add(ip2);
-		
+		if(!al.contains(ip2)) al.add(ip2);		
 		System.out.println(!al.contains(ip2));	//false
+		
 		//Wouldn't it be great if the Collection Framework provided a class that checked for duplicates, hmm!
+		System.out.println("~~~ HashSet ~~~");
+		HashSet<IPAddress> hashSet = new HashSet<IPAddress>(2);
+		System.out.println(hashSet.add(ip));	//true
+		System.out.println(hashSet.add(ip));	//false
+		System.out.println(hashSet.add(ip2));	//false
+		System.out.println(hashSet.add(ip2));	//false
+		IPAddress ip3 = new IPAddress("10.0.0.2");
+		System.out.println(hashSet.add(ip3));	//true
+		
+		//HashCode contract		
+		for(int i = 0; i <10; ++i)	System.out.println(ip3.hashCode()); //consistent 381...
 		
 		
 	}
@@ -77,9 +90,21 @@ class IPAddress{
 	public String toString() {
 		return this.ipAddress + ':' + this.portNumber;
 	}
-
+	@Override
 	public boolean equals(Object obj) {
-		return (obj instanceof IPAddress && (((IPAddress) obj).ipAddress == this.ipAddress ));
+		return (obj instanceof IPAddress &&
+				(((IPAddress) obj).ipAddress == this.ipAddress ) && 
+				(((IPAddress) obj).portNumber == this.portNumber )
+				);
+	}
+
+	@Override
+	public int hashCode() {
+		int hashCode = 0;
+		for(char ch : ipAddress.toCharArray()){
+			hashCode += ch;
+		}		
+		return hashCode;
 	}
 	
 	
