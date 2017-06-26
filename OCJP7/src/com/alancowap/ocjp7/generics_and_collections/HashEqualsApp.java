@@ -9,7 +9,8 @@ public class HashEqualsApp {
 	public static void main(String[] args) {
 		System.out.println("Welcome to Equals & HashCode");
 		IPAddress ip = new IPAddress("127.0.0.1");
-		System.out.println(ip);
+		System.out.println(ip); // com.alancowap.ocjp7.generics_and_collections.IPAddress@15db9742
+
 
 	}
 	
@@ -19,19 +20,30 @@ public class HashEqualsApp {
 
 
 class IPAddress{
-	private String IPaddress;
+	private String ipAddress;
+	private int portNumber;
 
-	public IPAddress(String iPaddress) {
+	public IPAddress(String ipAddress) {
+		this(ipAddress, -1);
+	}
+	
+	public IPAddress(String ipAddress, int portNumber) {
 		super();
-		IPaddress = iPaddress;
+		this.ipAddress = ipAddress;
+		this.portNumber = portNumber;
 	}
 
 	public String getIPaddress() {
-		return IPaddress;
+		return ipAddress;
 	}
-
 	public void setIPaddress(String iPaddress) {
-		IPaddress = iPaddress;
+		this.ipAddress = iPaddress;
+	}
+	public int getPortNumber() {
+		return portNumber;
+	}
+	public void setPortNumber(int portNumber) {
+		this.portNumber = portNumber;
 	}
 
 	
