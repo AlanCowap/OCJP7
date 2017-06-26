@@ -16,8 +16,12 @@ public class HashEqualsApp {
 		System.out.println(ip); 
 
 		//equals() - Use case: Determine if two IPAddress objects are the same
+		IPAddress ip2 = new IPAddress("127.0.0.1");
+		System.out.println("ip == ip2 " + (ip == ip2)); //object equality (memory addresses)
+		System.out.println("ip.equals(ip2) " + ip.equals(ip2)); //meaningful equivalence or == ?
+		//we need to override equals(), because Objects implementation is simply == 
 		
-
+		
 	}
 	
 }
@@ -57,5 +61,11 @@ class IPAddress{
 	public String toString() {
 		return this.ipAddress + ':' + this.portNumber;
 	}
+
+	public boolean equals(Object obj) {
+		return (obj instanceof IPAddress && (((IPAddress) obj).ipAddress == this.ipAddress ));
+	}
+	
+	
 	
 }
