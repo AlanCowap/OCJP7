@@ -4,6 +4,8 @@
  */
 package com.alancowap.ocjp7.generics_and_collections;
 
+import java.util.ArrayList;
+
 public class HashEqualsApp {
 
 	public static void main(String[] args) {
@@ -20,6 +22,20 @@ public class HashEqualsApp {
 		System.out.println("ip == ip2 " + (ip == ip2)); //object equality (memory addresses)
 		System.out.println("ip.equals(ip2) " + ip.equals(ip2)); //meaningful equivalence or == ?
 		//we need to override equals(), because Objects implementation is simply == 
+		
+		//Let's look at an example of the Collection classes using equals
+		ArrayList<IPAddress> al = new ArrayList<IPAddress>(2);
+		System.out.println(!al.contains(ip));	//true
+		if(!al.contains(ip)) al.add(ip);	
+		
+		System.out.println(!al.contains(ip));	//false
+		if(!al.contains(ip)) al.add(ip);
+		
+		System.out.println(!al.contains(ip2));	//false
+		if(!al.contains(ip2)) al.add(ip2);
+		
+		System.out.println(!al.contains(ip2));	//false
+		//Wouldn't it be great if the Collection Framework provided a class that checked for duplicates, hmm!
 		
 		
 	}
