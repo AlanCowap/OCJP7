@@ -1,6 +1,7 @@
 /**
  * Demo overriding of toString, equals, hashCode.
  * Use ArrayList, HashSet
+ * equals() Contract, hashCode() Contract.
  * 
  * @author Alan Cowap
  * 
@@ -38,7 +39,7 @@ public class HashEqualsApp {
 		System.out.println(!al.contains(ip2));	//false
 		
 		//Wouldn't it be great if the Collection Framework provided a class that checked for duplicates, hmm!
-		System.out.println("~~~ HashSet ~~~");
+		System.out.println("\n~~~ HashSet ~~~");
 		HashSet<IPAddress> hashSet = new HashSet<IPAddress>(2);
 		System.out.println(hashSet.add(ip));	//true
 		System.out.println(hashSet.add(ip));	//false
@@ -47,7 +48,7 @@ public class HashEqualsApp {
 		IPAddress ip3 = new IPAddress("10.0.0.2");
 		System.out.println(hashSet.add(ip3));	//true
 		
-		//HashCode Contract: 3 Rules
+		System.out.println("\n~~~ HashCode Contract ~~~");//HashCode Contract: 3 Rules
 		//1. Consistent hashCode. 381...
 		for(int i = 0; i <10; ++i)
 			System.out.print(ip3.hashCode() + " ");
@@ -98,6 +99,7 @@ class IPAddress{
 	public String toString() {
 		return this.ipAddress + ':' + this.portNumber;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		return (obj instanceof IPAddress &&
@@ -113,8 +115,6 @@ class IPAddress{
 			hashCode += ch;
 		}		
 		return hashCode;
-	}
-	
-	
+	}	
 	
 }
