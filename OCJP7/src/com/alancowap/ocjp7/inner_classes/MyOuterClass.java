@@ -3,7 +3,7 @@
  *  - Referencing an inner class from an outer class, and vice versa.
  *  - Referencing an inner class from another top-level class 
  * 
- * Sample usages of a simple inner class like that in the code below:
+ * Sample usages of inner classes:
  * - a class to be sorted multiple ways - use inner classes to define implementations for Comparator interface
  * - defining a Database contract in Android, e.g. inner class for each Table in the Database
  * - define a ViewHolder in Android as an inner class, e.g. for a class extending RecyclerView.Adapter<MyOuterClass.MyInnerClass>{}
