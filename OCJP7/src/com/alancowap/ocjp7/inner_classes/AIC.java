@@ -1,6 +1,7 @@
 /**
  * Demo Anonymous Inner Classes
  * - extending a class
+ * - implementing an interface
  * 
  * @author Alan Cowap
  *
