@@ -15,7 +15,7 @@
 package com.alancowap.ocjp7.inner_classes;
 
 public class MyOuterClass {
-	private int outerNum = 5;
+	private int outerNum = 2;
 	private int shadowNum = 12;
 	
 	public static void main(String[] args) {
@@ -29,9 +29,7 @@ public class MyOuterClass {
 		int num = inner.innerNum; //inner & outer class objects can access each others private variables 
 		
 		//This syntax is also acceptable.
-//		inner = new MyOuterClass().new MyInnerClass(); 
-		
-		
+//		inner = new MyOuterClass().new MyInnerClass();		
 	}
 	
 	public void outerMethod(){
@@ -49,9 +47,7 @@ public class MyOuterClass {
 			System.out.println("Outer Space from Inner Space " + MyOuterClass.this.shadowNum ); //12
 		}
 	}
-
 }
-
 
 // This is a top-level class, it is NOT an inner class
 class AnotherTopLevelClass{
