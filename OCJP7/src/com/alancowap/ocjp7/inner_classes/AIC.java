@@ -2,6 +2,7 @@
  * Demo Anonymous Inner Classes
  * - extending a class
  * - implementing an interface
+ * - argument defined AIC
  * 
  * @author Alan Cowap
  *
@@ -12,6 +13,7 @@ public class AIC {
 
 	public static void main(String[] args) {
 		System.out.println("Anonymous Inner Classes ");
+		//AIC Type 1 - extending a class
 		Animal an = new Animal(){
 			void move(){
 				System.out.println("Move like an .. Anonymous Inner (child) Class " + this);
@@ -19,6 +21,7 @@ public class AIC {
 		};
 		an.move();
 
+		//AIC Type 2 - implementing an interface
 		Edible edible = new Edible(){
 			@Override
 			public void eat() {
@@ -26,8 +29,21 @@ public class AIC {
 			}			
 		};
 		edible.eat();
-	}
 
+		//AIC Type 3 - argument defined 		
+		new AIC().freeze(new Freezable(){
+			@Override
+			public void freeze() {
+				System.out.println("Freeze like an .. Anonymous Inner (child) class " + this);				
+			}			
+		});
+		
+	}
+	
+	public void freeze(Freezable entity){
+		entity.freeze();
+	}	
+	
 }
 
 abstract class Animal{
@@ -36,4 +52,8 @@ abstract class Animal{
 
 interface Edible{
 	void eat();
+}
+
+interface Freezable{
+	void freeze();
 }
