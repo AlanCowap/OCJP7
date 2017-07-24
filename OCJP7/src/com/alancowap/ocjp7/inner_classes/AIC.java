@@ -10,13 +10,21 @@ package com.alancowap.ocjp7.inner_classes;
 public class AIC {
 
 	public static void main(String[] args) {
-		System.out.println("Anonymous Inner Classes");
+		System.out.println("Anonymous Inner Classes ");
 		Animal an = new Animal(){
 			void move(){
-				System.out.println("Move like a .. Anonymous Inner (child) Class " + this);
+				System.out.println("Move like an .. Anonymous Inner (child) Class " + this);
 			}
 		};
 		an.move();
+
+		Edible edible = new Edible(){
+			@Override
+			public void eat() {
+				System.out.println("Eat like an .. Anonymous Inner (child) class " + this);
+			}			
+		};
+		edible.eat();
 	}
 
 }
@@ -25,3 +33,6 @@ abstract class Animal{
 	abstract void move();	
 }
 
+interface Edible{
+	void eat();
+}
