@@ -9,6 +9,8 @@
  *  - - you can't put another Thread to sleep, so t2.sleep() puts you to sleep - not t2
  *  - Maybe Thread.yield() will do the trick for us? Nope, yield sends a RUNNING thread to RUNNABLE
  *  - Note the problem is these are the wrong tools to sequence/choreograph our Threads
+ *  - join() is an appropriate method to implement sequencing of Threads
+ *  - - but it's not that multithreaded necessarily.
  * 
  * 
  * @author Alan Cowap
@@ -25,21 +27,40 @@ public class ThreadBasics {
 		Thread t2 = new Thread(numberThread2);		
 		NumberThread numberThread3 = new NumberThread(3, '/');
 		Thread t3 = new Thread(numberThread3);
-		//Will setting Priority change the order of execution? Not reliably.
-		//setPriority() isn't suitable for sequencing
-		t1.setPriority(Thread.MIN_PRIORITY);
-		t2.setPriority(Thread.MIN_PRIORITY);
-		t3.setPriority(Thread.MAX_PRIORITY);
-		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
+//		//Will setting Priority change the order of execution? Not reliably.
+//		//setPriority() isn't suitable for sequencing
+//		t1.setPriority(Thread.MIN_PRIORITY);
+//		t2.setPriority(Thread.MIN_PRIORITY);
+//		t3.setPriority(Thread.MAX_PRIORITY);
+//		Thread.currentThread().setPriority(Thread.MIN_PRIORITY);
 	
 		t1.start();
+		try {
+			t1.join(100);
+		} catch (InterruptedException e) {
+			System.out.println("Someone interrupted me");
+		}
+		
 		t2.start();
+		try {
+			t2.join(100);
+		} catch (InterruptedException e) {
+			System.out.println("Someone interrupted me");
+		}
+		
 		t3.start();
+		try {
+			t3.join(100);
+		} catch (InterruptedException e) {
+			System.out.println("Someone interrupted me");
+		}
+		
 		for (int i=0; i < 50; ++i){
 			System.out.print(0);
-			Thread.yield();
-			System.out.print("-"); //Let's see when we yield
+//			Thread.yield();
+//			System.out.print("-"); //Let's see when we yield
 		}
+		
 	}
 }
 
@@ -62,9 +83,9 @@ class NumberThread implements Runnable{
 //		}
 		for (int i=0; i < 50; ++i){
 			System.out.print(mNumber);
-			//Thread.yield() isn't suitable for sequencing
-			Thread.yield();
-			System.out.print(mSymbol); //Let's see when we yield
+//			//Thread.yield() isn't suitable for sequencing
+//			Thread.yield();
+//			System.out.print(mSymbol); //Let's see when we yield
 		}
 	}
 
