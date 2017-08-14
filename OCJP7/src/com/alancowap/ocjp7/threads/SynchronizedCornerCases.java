@@ -34,7 +34,8 @@ public class SynchronizedCornerCases {
 		
 		//Code to verify that an empty String literal goes in the SCP
 		System.out.println("" == "" ? "True" : "False");	//String literals => SCP
-		System.out.println(new String("") == new String("") ? "True" : "False");		
+		System.out.println(new String("") == new String("") ? "True" : "False"); //heap		
+		System.out.println(""+"" == "" ? "True" : "False");	//String literals => SCP
 	}
 	
 	public SynchronizedCornerCases(){
