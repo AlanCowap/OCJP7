@@ -47,8 +47,8 @@ public class NoInterruptions {
 		synchronized(notifier){
 			try {
 				System.out.println("\nI shall wait to be notified");
-				notifier.wait();
-				System.out.println("I am not waiting");
+				notifier.wait();	//should put wait() in a loop etc. in case we miss the corresponding notify()
+				System.out.println("The wait is over");
 			} catch (InterruptedException e) {
 				System.out.println(interruptedMessage);
 			}
@@ -59,29 +59,29 @@ public class NoInterruptions {
 }
 
 class Notifier implements Runnable{
-	final String interruptedMessage = "Who interrupted me?";
+	final String interruptedMessage = "-Who interrupted me?";
 	@Override
 	public void run() {
-		System.out.println("Note this");
+		System.out.println("-Note this");
 		synchronized(this){
-			System.out.println("Note that");
+			System.out.println("-Note that");
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 				System.out.println(interruptedMessage);
 			}
 			notifyAll();
-			System.out.println("Noted");
+			System.out.println("-Noted");
 		}		
 	}	
 }
 
 
 class Joiner implements Runnable{
-	final String interruptedMessage = "Who interrupted me?";
+	final String interruptedMessage = "~Who interrupted me?";
 	@Override
 	public void run() {
-		System.out.println("Runing to the hills");
+		System.out.println("~Runing to the hills");
 		try {
 			Thread.sleep(800);
 		} catch (InterruptedException e) {
@@ -89,3 +89,24 @@ class Joiner implements Runnable{
 		}
 	}	
 }
+
+/* Sample output YMMV
+ * 
+InterruptedException is not normally thrown by sleep(), join(), or wait()
+
+I'm going to take a nap
+I'm awake again
+
+I'm going to join Joiner
+~Runing to the hills
+I'm back from the join
+
+I shall wait to be notified
+-Note this
+-Note that
+-Noted
+The wait is over
+I am not even trying to wait
+
+
+*/
