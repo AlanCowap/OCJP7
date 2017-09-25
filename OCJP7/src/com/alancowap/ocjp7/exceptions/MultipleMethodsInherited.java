@@ -25,14 +25,17 @@ public class MultipleMethodsInherited implements Readable, Writable{
 //	public void open() throws IOException {}	// not compatible with Readable.open()
 
 //	@Override
-//	public void open() throws SQLException, IOException {}	// not compatible with Writable.open() or Readable.open()
+//	public void open() throws IOException, SQLException {}	// not compatible with Writable.open() or Readable.open()
 
 //	@Override
 //	public void open() throws Exception {}	// Exceptions thrown by overriding methods must be invariant, covariant, or none
 	// Note invariant and covariant are excluded in this specific example per above three code snippets.  
 
+//	@Override
+//	public void open(){}	// Woohoo! Exceptions thrown by overriding methods must be invariant, covariant, or no (checked) exception thrown
+
 	@Override
-	public void open(){}	// Woohoo! Exceptions thrown by overriding methods must be invariant, covariant, or none
+	public void open() throws NullPointerException{}	// Woohoo! Exceptions thrown by overriding methods must be invariant, covariant, or no (checked) exception thrown
 
 	
 }
