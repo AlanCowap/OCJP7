@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class MultipleMethodsInherited implements Readable, Writable{
 
 	public static void main(String[] args) {
-		System.out.println("Demo of multiple methods ");
+		System.out.println("Demo of multiple methods with similar signatures but different Exceptions thrown from multiple interfaces");
 		
 
 	}
