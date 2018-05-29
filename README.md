@@ -1,4 +1,4 @@
-# OCJP7
+# Oracle Certified Professional - Java Programmer 2 (1Z0-804)
 Code for students taking the Oracle Certified Professional Java Programmer 2 (1ZO-804)
 
 P.S. You may also be interested in my repo for the Oracle Certified Associate Java Programmer 1 (1ZO-803, 1Z0-808) 
